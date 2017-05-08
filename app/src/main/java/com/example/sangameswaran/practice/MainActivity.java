@@ -2,8 +2,10 @@ package com.example.sangameswaran.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -86,6 +88,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent=new Intent(this,PracticeActivity1.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+
+            Intent intent=new Intent(this,VolleyGetJsonObject.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.nav_slideshow) {
 
