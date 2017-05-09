@@ -24,6 +24,7 @@
 
         </activity>
         <activity android:name=".VolleyGetJsonObject"></activity>
+        <activity android:name=".EnterIntoDB"></activity>
     </application>
 
 </manifest>
