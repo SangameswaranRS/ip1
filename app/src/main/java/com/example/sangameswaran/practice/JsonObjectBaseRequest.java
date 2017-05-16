@@ -21,6 +21,7 @@ public class JsonObjectBaseRequest extends JsonObjectRequest {
 
     public JsonObjectBaseRequest(String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(url, jsonRequest, listener, errorListener);
+        setRetryPolicy(new DefaultRetryPolicy(2000,5,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
     }
 

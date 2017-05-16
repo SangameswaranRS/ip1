@@ -29,7 +29,7 @@ public class PracticeActivity1 extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String languageToLoad  = "fa"; // your language
+        String languageToLoad  = "kn"; // your language
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();

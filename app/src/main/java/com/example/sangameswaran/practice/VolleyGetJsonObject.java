@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +33,7 @@ import java.util.Map;
 public class VolleyGetJsonObject extends AppCompatActivity {
 
 TextView t1,t2,t3;
-    String SERVER_URL="http://10.1.19.188/app/insert.php";
+    String SERVER_URL="https://api.myjson.com/bins/bwb8t";
     Button b1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,41 +44,38 @@ TextView t1,t2,t3;
         t2=(TextView)findViewById(R.id.tv2);
         t3=(TextView)findViewById(R.id.tv3);
         b1=(Button)findViewById(R.id.b1);
-        JSONObject o;
-        final JSONObject finalO = o=null;
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                RequestQueue requestQueue= Volley.newRequestQueue(VolleyGetJsonObject.this);
-                StringRequest overall=new StringRequest(Request.Method.POST, SERVER_URL, new Response.Listener<String>() {
+            public void onClick(View v) {
+                RequestQueue requestQueue=Volley.newRequestQueue(VolleyGetJsonObject.this);
+                JsonObjectRequest objectRequest=new JsonObjectRequest(Request.Method.GET, SERVER_URL, null, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
 
-                        Toast.makeText(getApplicationContext(),"the responce is positive"+response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Response"+response,Toast.LENGTH_LONG).show();
+                        try {
+                            String s=response.getString("name");
+                            t1.setText(s);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),"Error"+error,Toast.LENGTH_LONG).show();
 
                     }
-                }){
-                    @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String,String> params=new HashMap<String, String>();
-                            params.put("name","PrabhuSiva");
-                            params.put("username","prabhusivam26");
-                            params.put("password","passwd");
-
-                            params.put("email","emaild");
-                            return params;
-                    }
-                };
-
-                requestQueue.add(overall);
-
-
+                });
+                requestQueue.add(objectRequest);
             }
         });
-    }
+
+            }
+
+
 }
